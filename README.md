@@ -76,6 +76,6 @@ https://reflectoring.io/guide-publishing-to-bintray-with-gradle/
 ###### publish a package to bintray maven repository:
 
 ```bash
-gradle -p vertx-base-core bintrayUpload -Dbintray.user=abneroliveira -Dbintray.key
+gradle -p vertx-base-core bintrayUpload -Dbintray.user=abneroliveira -Dbintray.key=
 ```
 
