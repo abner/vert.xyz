@@ -1,0 +1,82 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.github.ksoichiro:gradle-console-reporter:0.5.0'
+    }
+}
+
+
+plugins {
+    id "com.jfrog.bintray" version "1.5"
+}
+
+
+def slf4jVersion = '1.7.5'
+def junitVersion = '5.1.0'
+
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'maven'
+    apply plugin: 'maven-publish'
+    apply plugin: "com.jfrog.bintray"
+
+    ext.groupId = 'io.abner.vert.xyz'
+
+    
+
+    ext.pomConfig  = {
+        licenses {
+            license {
+                name "MIT"
+                url "https://opensource.org/licenses/MIT"
+                distribution "repo"
+            }
+        }
+        developers {
+            developer {
+                id "abner"
+                name "Abner Oliveira"
+                email "abner.silva@gmail.com"
+            }
+        }
+
+        scm {
+            url "https://github.com/abner/vert.xyz"
+        }
+    }
+
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+        compile "org.slf4j:slf4j-api:$slf4jVersion"
+        testCompile "junit:junit$junitVersion"
+    }
+
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+
+    javadoc.failOnError = false
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        classifier = 'javadoc'
+        from javadoc.destinationDir
+    }
+
+    artifacts {
+        archives sourcesJar
+        archives javadocJar
+    }
+
+    
+}
+
+apply plugin: 'idea'

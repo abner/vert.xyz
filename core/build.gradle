@@ -1,0 +1,72 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+}
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+ext.version='0.0.1'
+
+version='0.0.1'
+
+description='Vert.x Base Facility Classes!'
+
+def apacheCommonsLangVersion = '3.7'
+def guavaVersion = '23.6-jre'
+def vertxVersion = '3.5.0'
+def dotEnvVersion = '0.1.1';
+
+dependencies {
+    compile "com.github.shyiko.dotenv:dotenv:$dotEnvVersion"
+    compile "io.vertx:vertx-core:$vertxVersion"
+    compile "io.vertx:vertx-rx-java:$vertxVersion"
+    compile "io.vertx:vertx-config:$vertxVersion"
+    compile "org.apache.commons:commons-lang3:$apacheCommonsLangVersion"
+    compile "com.google.guava:guava:${guavaVersion}"
+    testCompile "io.vertx:vertx-unit:$vertxVersion"
+}
+
+publishing {
+    publications {
+        mavenPublication(MavenPublication) {
+            from components.java
+            artifact sourcesJar {
+                classifier "sources"
+            }
+            artifact javadocJar {
+                classifier "javadoc"
+            }
+            groupId project.property('groupId')
+            artifactId project.name
+            version project.property('version')
+            pom.withXml {
+                def root = asNode()
+                root.appendNode('description', project.description)
+                root.appendNode('name', 'vert.xyz')
+                root.appendNode('url', 'https://github.com/abner/vert.xyz')
+                root.children().last() + project.property('pomConfig')
+            }
+        }
+    }
+}
+
+bintray {
+        user = System.getProperty('bintray.user')
+        key = System.getProperty('bintray.key')
+        publications = ['mavenPublication']
+        pkg {
+            repo = 'vert.xyz'
+            name = project.name
+            // userOrg = 'reflectoring'
+            licenses = ['MIT']
+            vcsUrl = 'https://github.com/abner/vert.xyz.git'
+            version {
+                name = project.property('version')
+                desc = project.property('version')
+                released  = new Date()
+            }
+        }
+    }
