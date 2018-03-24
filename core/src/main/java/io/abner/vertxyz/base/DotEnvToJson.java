@@ -1,4 +1,4 @@
-package io.abner.vertx.base;
+package io.abner.vertxyz.base;
 
 import com.github.shyiko.dotenv.DotEnv;
 import io.vertx.core.json.Json;

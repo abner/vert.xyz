@@ -1,4 +1,4 @@
-package io.abner.vertx.base;
+package io.abner.vertxyz.base;
 
 import io.vertx.config.ConfigRetriever;
 import io.vertx.config.ConfigRetrieverOptions;

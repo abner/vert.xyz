@@ -8,9 +8,9 @@ apply plugin: 'java'
 
 sourceCompatibility = 1.8
 
-ext.version='0.0.1'
+ext.version='0.1.0'
 
-version='0.0.1'
+version='0.1.0'
 
 description='Vert.x Base Facility Classes!'
 
