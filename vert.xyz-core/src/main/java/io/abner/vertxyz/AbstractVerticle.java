@@ -1,4 +1,4 @@
-package io.abner.vertxyz.base;
+package io.abner.vertxyz;
 
 import io.vertx.config.ConfigRetriever;
 import io.vertx.config.ConfigRetrieverOptions;
@@ -82,7 +82,8 @@ public abstract class AbstractVerticle extends io.vertx.core.AbstractVerticle{
     /**
      * Implementations should implements this and should use the Future startupFuture
      * to indicate the verticle initialization is complete or if it failed
-     * @param startupFuture
+     * @param startupFuture the future object: implementations should call .complete() at it
+     * to indicate the startup is completed
      */
     protected abstract void onStart(Future<Void> startupFuture);
 }
