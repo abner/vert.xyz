@@ -1,0 +1,37 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.2'
+    }
+}
+
+apply plugin: 'com.github.johnrengelman.shadow'
+
+sourceCompatibility = 1.8
+
+dependencies {
+    compile "io.abner.vert.xyz:vert.xyz-core:$version"
+}
+
+def mainClassName = 'io.vertx.core.Launcher'
+def watchForChange = 'src/**/*'
+def doOnChange = './gradlew classes'
+def mainVerticleName = 'io.abner.vertx.base.example.ExampleVerticle'
+
+run {
+     args = ['run', "$mainVerticleName", "--redeploy=$watchForChange", "--launcher-class=$mainClassName", "--on-redeploy=$doOnChange"]
+}
+
+shadowJar {
+    classifier = 'fat'
+    manifest {
+        attributes "Main-Verticle": mainVerticleName
+    }
+    mergeServiceFiles {
+        include 'META-INF/services/io.vertx.core.spi.VerticleFactory'
+    }
+}
+

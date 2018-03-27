@@ -1,9 +1,11 @@
 buildscript {
     repositories {
         mavenCentral()
+        jcenter()
     }
     dependencies {
         classpath 'com.github.ksoichiro:gradle-console-reporter:0.5.0'
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.2'
     }
 }
 
@@ -15,7 +17,7 @@ plugins {
 
 def slf4jVersion = '1.7.5'
 def junitVersion = '5.1.0'
-
+def vertxVersion = '3.5.1'
 
 allprojects {
     apply plugin: 'java'
@@ -23,9 +25,10 @@ allprojects {
     apply plugin: 'maven-publish'
     apply plugin: "com.jfrog.bintray"
 
-    ext.groupId = 'io.abner.vert.xyz'
+    ext.groupId='io.abner.vert.xyz'
+    ext.version='0.1.0'
 
-    
+    version="$ext.version"
 
     ext.pomConfig  = {
         licenses {

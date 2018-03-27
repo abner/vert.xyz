@@ -1,3 +1,4 @@
 rootProject.name = 'vertx-base'
 
 include 'vert.xyz-core'
+include 'vert.xyz-core-example'
