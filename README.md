@@ -9,6 +9,16 @@
 ### Install
 
 
+
+### How to use
+
+
+
+### Start the example App
+
+```bash
+EXAMPLE_HTTP_PORT=8080 gradle run -p vert.xyz-core-example
+```
 #### Maven
 
 Enable the repository:
@@ -78,4 +88,5 @@ https://reflectoring.io/guide-publishing-to-bintray-with-gradle/
 ```bash
 gradle -p vertx.xyz-core bintrayUpload -Dbintray.user=abner -Dbintray.key=BINTRAY_KEY
 ```
+
 

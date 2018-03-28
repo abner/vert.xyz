@@ -9,6 +9,7 @@ buildscript {
 }
 
 apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'application'
 
 sourceCompatibility = 1.8
 
@@ -16,13 +17,13 @@ dependencies {
     compile "io.abner.vert.xyz:vert.xyz-core:$version"
 }
 
-def mainClassName = 'io.vertx.core.Launcher'
+mainClassName = 'io.vertx.core.Launcher'
 def watchForChange = 'src/**/*'
-def doOnChange = './gradlew classes'
-def mainVerticleName = 'io.abner.vertx.base.example.ExampleVerticle'
+def doOnChange = '../gradlew classes'
+def mainVerticleName = 'io.abner.vertxyz.example.VerticleExample'
 
 run {
-     args = ['run', "$mainVerticleName", "--redeploy=$watchForChange", "--launcher-class=$mainClassName", "--on-redeploy=$doOnChange"]
+    args = ['run', "$mainVerticleName", "--redeploy=$watchForChange", "--launcher-class=$mainClassName", "--on-redeploy=$doOnChange"]
 }
 
 shadowJar {

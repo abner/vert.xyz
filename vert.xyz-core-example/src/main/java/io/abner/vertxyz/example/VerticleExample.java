@@ -55,7 +55,7 @@ public class VerticleExample extends AbstractVerticle {
             final int httpPort = Integer.valueOf(config().getString("EXAMPLE_HTTP_PORT"));
 
             server.requestHandler(req -> {
-                req.response().end("OK > It's cool!");
+                req.response().end("SERVER IS OK > Great!!!!");
             }).listen(httpPort, sh -> {
                 if (sh.succeeded()) {
                     LOGGER.info("Server started at port: " + sh.result().actualPort());
